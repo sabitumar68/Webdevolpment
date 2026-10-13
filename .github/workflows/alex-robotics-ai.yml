@@ -1,0 +1,23 @@
+name: Alex Robotics AI build
+on:
+  push:
+    paths:
+      - "alex-robotics-ai/**"
+      - ".github/workflows/alex-robotics-ai.yml"
+  pull_request:
+    paths:
+      - "alex-robotics-ai/**"
+      - ".github/workflows/alex-robotics-ai.yml"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: alex-robotics-ai
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npm run build
